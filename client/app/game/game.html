@@ -1,0 +1,25 @@
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-lg-12">
+      <h2>
+        <span ng-bind-html="time.date | appTime"></span>
+        <i class="btn btn-default fa fa-play" ng-click="nextYear()"></i>
+        <span class="pull-right text-right">
+          今期：{{assets.term *10 | number: 0}}万円<br>
+          前期：{{assets.lastTerm *10 | number: 0}}万円<br>
+          総資産：{{assets.total *10 | number: 0}}万円
+        </span>
+      </h2>
+      <h3>組織</h3>
+      <div person-tree treeroot="persons.root"></div>
+
+      <h3>求人</h3>
+      <div class="bg-info well well-lg text-center" ng-drop="true" ng-drop-success="onDrop($data, $event)">
+        <span ng-repeat="p in persons.unassigns" person-cell person="p"></span>
+      </div>
+
+    </div>
+  </div>
+</div>
+

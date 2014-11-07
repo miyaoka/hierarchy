@@ -1,0 +1,17 @@
+<button class="btn btn-default btn-xs" ng-drag="true" ng-drag-data="person" ng-class="{newbie: person.career == 0, anger: person.isAnger}">
+  <img ng-src="assets/faceicons/{{person.face}}.png" class="face">
+  <span ng-show="person.children.length > 0">
+    <span class="person-skill">{{person.skill | number:0}}</span> / {{person.origSkill | number:0}}
+  </span>
+  <span ng-hide="person.children.length > 0">
+    <span class="person-skill">{{person.origSkill | number:0}}</span>
+  </span>
+  <span ng-show="person.lastSkill > 0" class="person-lastSkill">
+    +{{person.lastSkill}}
+  </span>
+  <br>
+  <div ng-class="{old: person.age >= 40}">
+    ({{person.age + 20 | number:0}})
+  </div>
+
+</button>

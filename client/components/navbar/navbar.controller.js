@@ -5,6 +5,12 @@ angular.module('hierarchyApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    },{
+      'title': 'Readme',
+      'link': '/readme'
+    },{
+      'title': 'ChangeLog',
+      'link': '/changelog'
     }];
 
     $scope.isCollapsed = true;
