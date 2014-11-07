@@ -15,7 +15,7 @@
       <div person-tree treeroot="persons.root"></div>
 
       <h3>求人</h3>
-      <div class="bg-info well well-lg" ng-drop="true" ng-drop-success="onDrop($data, $event)">
+      <div class="bg-info well well-lg text-center" ng-drop="true" ng-drop-success="onDrop($data, $event)">
         <span ng-repeat="p in persons.unassigns" person-cell person="p"></span>
       </div>
 
