@@ -55,6 +55,15 @@ angular.module('hierarchyApp')
       get isAnger(){
         var parent = this.parent;
         return (parent != null && !parent.isRoot && parent.skill < this.skill) ? true : false;
+      },
+      get tier(){
+        var t = 0;
+        var person = this;
+        while(person.parent){
+          person = person.parent;
+          t++;
+        }
+        return t;
       }
     }
 

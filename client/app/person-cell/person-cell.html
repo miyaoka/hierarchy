@@ -1,6 +1,5 @@
-<button class="btn btn-default btn-xs" ng-drag="true" ng-drag-data="person" ng-class="{newbie: person.career == 0, anger: person.isAnger}">
-  <img ng-src="assets/faceicons/{{person.face}}.png" class="face">
-
+<div class="person" ng-click="select(person)" ng-class="{newbie: person.career == 0, anger: person.isAnger, selected: isSelected()}">
+<i class="fa fa-male fa-2x person-icon"></i>
   <span class="rank-{{person | skillRank}}">
     <span ng-show="person.children.length > 0">
       <span class="person-skill">{{person.skill | number:0}}</span> / {{person.origSkill | number:0}}
@@ -18,4 +17,4 @@
     ({{person.age + 20 | number:0}})
   </div>
 
-</button>
+</div>

@@ -9,25 +9,35 @@ TABLE.person-table{
   }
 }
 .person-container{
-  background-color: #eee;
-  margin: 0px 6px 10px 6px;
-  padding: 12px 2px 8px 2px;
+  margin: 0px 2px;
+//  padding: 8px 2px 8px 2px;
+  border: 1px solid #ccc;
   position: relative;
+
+  .sum {
+    position: absolute;
+    font-size: 1.0em;
+    top: 0px;
+    right: 0px;
+    padding: 0px 12px;
+    background-color: #090;
+    color: #fff;
+  }
 }
-.sum {
-  position: absolute;
-  font-size: 1.0em;
-  top: 0px;
-  right: 0px;
-  padding: 0px 12px;
-  background-color: #090;
-  color: #fff;
+.vline{
+//  border-left: thick solid #999;
+  width: 2px;
+  height: 10px;
+  background-color: #999;
+  margin: 0px auto;
+//  content: '';
 }
 .division{
-//  border: 1px dashed #0c0;
+}
+.division-head{
   border: 1px solid #999;
-  border-bottom: 8px solid #ccc;
-  background-color: #fff;
+border-width: 1px 1px 3px 1px;
+//  background-color: #fff;
 }
 
 .person-root{

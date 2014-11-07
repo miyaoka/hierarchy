@@ -1,47 +1,77 @@
-.person-skill{
-  font-size: 2.0em;
+.person{
+  background-color: #fff;
+  font-size: 50%;
+  display: block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+
+//box-shadow: 2px 4px 4px 0px rgba(0,0,0,0.1);
+
+//  border: 1px solid transparent;
+  white-space: nowrap;
+//  border-radius: 4px;
+
+  padding: 4px 2px;
+  .person-skill{
+    font-size: 2.0rem;
+  }
+  .person-lastSkill{
+    background-color: #f60;
+    color: #fff;
+  }
+
+  .face {
+    width:24px;
+    height: 24px;
+  }
+  .old{
+    color: #f00;
+  }
+  .person-icon{
+    font-size: 2rem;
+    color: #669;
+  }
 }
+.person.newbie{
+  border-bottom: 4px solid #0f0;
+  padding-bottom: 1px;
+}
+.anger {
+  border-top: 4px solid #f00;
+  padding-top: 0px;
+}
+.selected {
+  background-color: #def;
+}
+
+  .rank-0, .rank-1, .rank-2{
+    color: #06f;
+  }
+  .rank-3{
+    color: #06c;
+  }
+  .rank-4{
+    color: #069;
+  }
+  .rank-6{
+    color: #060;
+    font-weight: bold;
+  }
+  .rank-7{
+    color: #090;
+    font-weight: bold;
+  }
+  .rank-8, .rank-9, .rank-10{
+    color: #0c0;
+    font-weight: bold;
+  }
 .prog-bar{
   height: 6px;
   width: 40px;
   margin: 0px;
   display: inline-block;
 }
-.person-lastSkill{
-  background-color: #f60;
-  color: #fff;
-}
-.newbie{
-  border-bottom: 2px solid #0f0;
-}
-.anger {
-  border-top: 4px solid #f00;
-}
-.face {
-  width:24px;
-  height: 24px;
-}
-.old{
-  color: #f00;
-}
-.rank-0, .rank-1, .rank-2{
-  color: #06f;
-}
-.rank-3{
-  color: #06c;
-}
-.rank-4{
-  color: #069;
-}
-.rank-6{
-  color: #060;
-  font-weight: bold;
-}
-.rank-7{
-  color: #090;
-  font-weight: bold;
-}
-.rank-8, .rank-9, .rank-10{
-  color: #0c0;
-  font-weight: bold;
-}
+

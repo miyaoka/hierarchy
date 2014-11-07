@@ -1,25 +1,130 @@
 
 <div class="container-fluid">
+
+
   <div class="row-fluid">
-    <div class="col-lg-12">
-      <h2>
+    <div class="col-sm-12">
+      <h3>
         <span ng-bind-html="time.date | appTime"></span>
-        <i class="btn btn-default fa fa-play" ng-click="nextYear()"></i>
+      </h3>
+        <i class="btn btn-primary fa fa-play" ng-click="nextYear()"> 次のターンへ進める</i>
         <span class="pull-right text-right">
           今期：{{assets.term *10 | number: 0}}万円<br>
           前期：{{assets.lastTerm *10 | number: 0}}万円<br>
           総資産：{{assets.total *10 | number: 0}}万円
         </span>
-      </h2>
-      <h3>組織</h3>
-      <div person-tree treeroot="persons.root"></div>
-
-      <h3>求人</h3>
-      <div class="bg-info well well-lg text-center" ng-drop="true" ng-drop-success="onDrop($data, $event)">
-        <span ng-repeat="p in persons.unassigns" person-cell person="p"></span>
-      </div>
-
+      </h3>
     </div>
   </div>
+
+  <div class="row-fluid">
+    <div class="col-sm-12">
+      <h4><i class="fa fa-sitemap fa-lg"></i> 組織</h4>
+      <div class="well well-sm">
+        <div class="alert alert-info" ng-hide="persons.hasTop">
+          まだ組織に一人も人材が居ません。<br>
+          下記の人材候補から社長を雇いましょう。
+        </div>
+
+        <div class="person-tree" person-tree treeroot="persons.root"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="col-sm-6">
+      <h4><i class="fa fa-graduation-cap fa-lg"></i> 新卒人材</h4>
+      <div class="recruit well well-sm">
+        <span ng-repeat="p in persons.unassigns" person-cell person="p"></span>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h4><i class="fa fa-child fa-lg"></i> 中途人材</h4>
+      <div class="recruit well well-sm">
+        <span ng-repeat="p in persons.unassigns" person-cell person="p"></span>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row-fluid" ng-show="persons.selected">
+    <div class="col-sm-6">
+      <h4>選択中の人物</h4>
+
+      <div>
+        <img ng-src="assets/faceicons/{{persons.selected.face}}.png" class="person-face">
+        <table class="table table-bordered table-condensed person-info">
+          <tr>
+            <td>スキル値</td>
+            <td class="rank-{{persons.selected | skillRank}}">
+                {{persons.selected.origSkill | number:0}}
+            </td>
+          </tr>
+          <tr>
+            <td>年齢</td>
+            <td>
+              {{persons.selected.age + 20}}歳
+            </td>
+          </tr>
+          <tr>
+            <td>勤続年数</td>
+            <td>
+              {{persons.selected.career}}年
+            </td>
+          </tr>
+        </table>
+      </div>
+
+
+      <div ng-show="!persons.action">
+        <div ng-show="persons.selected.parent">
+          <button class="btn btn-danger" ng-click="persons.fire()"><i class="fa fa-ban fa-2x"></i> 解雇する</button>
+          <span ng-show="persons.selected.tier > 2">
+            <button class="btn btn-primary" ng-click="persons.promote()"><i class="fa fa-level-up fa-2x"></i> 昇進させる</button>
+            <button class="btn btn-info" ng-disabled="persons.transferCountLeft < 1" ng-click="persons.transfer()"><i class="fa fa-exchange fa-2x"></i> 転属させる <span class="badge">{{persons.transferCountLeft}}</span></button>
+            <p>（転属は1ターンに指定回数しかできません）</p>
+          </span>
+
+        </div>
+        <div ng-show="!persons.selected.parent">
+          <button class="btn btn-primary" ng-disabled="persons.employCountLeft < 1" ng-click="persons.employ()"><i class="fa fa-smile-o fa-2x"></i> 雇用する <span class="badge">{{persons.employCountLeft}}</span></button>
+          <p>（雇用は1ターンに指定回数しかできません）</p>
+
+        </div>
+      </div>
+
+
+    </div>
+
+    <div ng-class="{'col-sm-6': persons.action != null}" ng-show="persons.action">
+
+      <div ng-switch="persons.action" class="alert alert-info">
+        <span ng-switch-when="promote">新しい上司を選んでください。<br>自身より高スキルかつ、今の上司より高い地位の人物しか選べません。</span>
+        <span ng-switch-when="transfer">新しい上司を選んでください。<br>自身より高スキルかつ、今の上司と同じ地位の人物しか選べません。</span>
+        <span ng-switch-when="employ">雇用先の上司を選んでください。<br>自身より高スキルの人物しか選べません。</span>
+        <span ng-switch-when="handoff">後任者を選んでください。</span>
+        <span ng-switch-when="fire">解雇します。よろしいですか？</span>
+      </div>
+
+
+      <div class="alert alert-danger" ng-show="persons.alerts.length > 0">
+        <ul>
+          <li ng-repeat="alert in persons.alerts">{{alert}}</li>
+        </ul>
+      </div>
+
+      <div>
+        <button class="btn btn-success" ng-show="persons.confirm" ng-click="persons.submit()"><i class="fa fa-check fa-2x"></i> 実行する</button>
+        <button class="btn btn-default" ng-click="persons.cancelSelect()">キャンセルする</button>
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+
 </div>
 

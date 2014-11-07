@@ -1,0 +1,28 @@
+.person-tree,
+.recruit{
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.recruit{
+  .person{
+    display: inline-block;
+    border: 1px solid #ccc;
+      min-width: 48px;
+
+  }
+}
+.person-face{
+  width:96px;
+  height: 96px;
+  float:left;
+}
+table.person-info{
+//  display: block;
+  width: 50%;
+  tbody > tr > td:first-child {
+    width: 25%;
+    background-color: #f6f6f0;
+    font-weight: bold;
+    text-align: right;
+  }
+}
