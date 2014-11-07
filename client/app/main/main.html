@@ -1,28 +1,27 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header>
 
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
-      </ul>
+      <h2>
+        <span ng-bind-html="time.date | appTime"></span>
+        <i class="btn btn-default fa fa-play" ng-click="nextYear()"></i>
+        <span class="pull-right text-right">
+          今期：{{assets.term *10 | number: 0}}万円<br>
+          前期：{{assets.lastTerm *10 | number: 0}}万円<br>
+          総資産：{{assets.total *10 | number: 0}}万円
+        </span>
+      </h2>
+      <h3>組織</h3>
+      <div person-tree treeroot="persons.root"></div>
+
+      <h3>求人</h3>
+      <div class="bg-info well well-lg" ng-drop="true" ng-drop-success="onDrop($data, $event)">
+        <span ng-repeat="p in persons.unassigns" person-cell person="p"></span>
+      </div>
+
     </div>
   </div>
 </div>
 
-<footer class="footer">
-  <div class="container">
-      <p>Angular Fullstack v2.0.13 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
-  </div>
-</footer>

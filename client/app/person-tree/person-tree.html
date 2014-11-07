@@ -1,0 +1,18 @@
+<div ng-drop="true" ng-drop-success="onDrop($data, $event)" >
+  <div ng-show="treeroot.isRoot" class="person-root text-center">
+    <i class="fa fa-2x fa-sitemap"></i>
+  </div>
+  <div ng-show="!treeroot.isRoot" class="person-container text-center" ng-class="{division: treeroot.hasChildren}">
+    <span class="sum" ng-show="treeroot.hasChildren">{{treeroot.childSum | number:0}}</span>
+    <span person-cell person="treeroot"></span>
+  </div>
+
+</div>
+
+<table class="person-table" ng-show="treeroot.hasChildren">
+  <tr>
+    <td ng-repeat="p in treeroot.children">
+      <div person-tree treeroot="p"></div>
+    </td>
+  </tr>
+</table>
