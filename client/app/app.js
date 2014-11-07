@@ -14,4 +14,5 @@ angular.module('hierarchyApp', [
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
+
   });

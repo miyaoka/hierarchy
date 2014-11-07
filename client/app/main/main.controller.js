@@ -1,31 +1,13 @@
 'use strict';
 
 angular.module('hierarchyApp')
-  .controller('MainCtrl', function ($scope, Persons, Time, Assets) {
-
-    $scope.persons = Persons;
-    $scope.unassignedPersons = Persons.unassigns;
-    $scope.time = Time;
-    $scope.assets = Assets;
-
-    function assignTo(dest){
-      var i = Math.random()*3 + 2;
-      while(i-- > 0){
-        Persons.assignTo(ua[0], dest);
-      }
-    }
-
-    $scope.nextYear = function(){
-      Time.nextYear();
-    };
-    $scope.onDrop = function(data, event){
-      Persons.assignTo(data, null);
-    };
-
+  .controller('MainCtrl', function ($scope, Persons) {
     var i = 5;
     while(i-- > 0){
       Persons.createCareer();
     }
+
+
 
     return;
     var ua = Persons.unassigns;
