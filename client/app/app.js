@@ -7,7 +7,8 @@ angular.module('hierarchyApp', [
   'ui.router',
   'ui.bootstrap',
   'RecursionHelper',
-  'ngDraggable'
+  'ngDraggable',
+  'hc.marked'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider
