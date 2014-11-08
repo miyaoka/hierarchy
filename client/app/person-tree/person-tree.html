@@ -1,4 +1,4 @@
-<div>
+<div class="tree-container">
   <div ng-show="!treeroot.isRoot">
     <div class="vline"></div>
     <div class="person-container text-center" ng-class="{'division-head': treeroot.hasChildren}">
@@ -7,12 +7,12 @@
     </div>
   </div>
 
-</div>
 
-<table class="person-table" ng-show="treeroot.hasChildren">
-  <tr>
-    <td ng-repeat="p in treeroot.children">
-      <div person-tree treeroot="p" ng-class="{'division': p.hasChildren}"></div>
-    </td>
-  </tr>
-</table>
+  <table class="person-table" ng-show="treeroot.hasChildren">
+    <tr>
+      <td ng-repeat="p in treeroot.children">
+        <div person-tree treeroot="p" ng-class="{'division': p.hasChildren}"></div>
+      </td>
+    </tr>
+  </table>
+</div>
