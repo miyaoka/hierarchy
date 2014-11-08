@@ -64,6 +64,9 @@ angular.module('hierarchyApp')
           t++;
         }
         return t;
+      },
+      get ageType(){
+        return Math.min(4, Math.floor(this.age / 10));
       }
     }
 

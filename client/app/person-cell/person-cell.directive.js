@@ -14,7 +14,7 @@ angular.module('hierarchyApp')
         };
         $scope.isSelected = function(){
           return (Persons.selected == $scope.person || Persons.selected2 == $scope.person);
-        }
+        };
       },
       link: function (scope, element, attrs) {
       }

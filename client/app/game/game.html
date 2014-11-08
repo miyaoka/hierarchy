@@ -53,7 +53,7 @@
       <h4>選択中の人物</h4>
 
       <div>
-        <img ng-src="assets/faceicons/{{persons.selected.face}}.png" class="person-face">
+        <img ng-src="assets/faceicons/businessman-icons/{{persons.selected.ageType}}.png" class="person-face">
         <table class="table table-bordered table-condensed person-info">
           <tr>
             <td>スキル値</td>
@@ -88,7 +88,7 @@
 
         </div>
         <div ng-show="!persons.selected.parent">
-          <button class="btn btn-primary" ng-disabled="persons.employCountLeft < 1" ng-click="persons.employ()"><i class="fa fa-smile-o fa-2x"></i> 雇用する <span class="badge">{{persons.employCountLeft}}</span></button>
+          <button class="btn btn-primary" ng-disabled="persons.employCountLeft < 1" ng-click="persons.employ()"><i class="fa fa-thumbs-up fa-2x"></i> 雇用する <span class="badge">{{persons.employCountLeft}}</span></button>
           <p>（雇用は1ターンに指定回数しかできません）</p>
 
         </div>

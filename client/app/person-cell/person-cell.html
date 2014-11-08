@@ -1,5 +1,5 @@
 <div class="person" ng-click="select(person)" ng-class="{newbie: person.career == 0, anger: person.isAnger, selected: isSelected()}">
-<i class="fa fa-male fa-2x person-icon"></i>
+    <img ng-src="assets/faceicons/businessman-icons/{{person.ageType}}.png" class="person-icon">
   <span class="rank-{{person | skillRank}}">
     <span ng-show="person.children.length > 0">
       <span class="person-skill">{{person.skill | number:0}}</span> / {{person.origSkill | number:0}}
