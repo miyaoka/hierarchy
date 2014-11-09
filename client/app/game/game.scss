@@ -13,15 +13,27 @@
 }
 .person-face{
 
-  float:left;
+//  float:left;
 }
-table.person-info{
-//  display: block;
-  width: 50%;
-  tbody > tr > td:first-child {
-    width: 25%;
-    background-color: #f6f6f0;
-    font-weight: bold;
-    text-align: right;
+.person-info{
+  display: inline-block;
+  table{
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    tbody > tr > td:first-child {
+      width: 25%;
+      background-color: #f6f6f0;
+      font-weight: bold;
+      text-align: right;
+    }
   }
+}
+.person-action,
+.person-action-alert{
+  display: inline-block;
+}
+.selected-person{
+  margin: 0 auto;
+  display: inline-block;
 }
