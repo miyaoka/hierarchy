@@ -17,6 +17,7 @@
 }
 .person-info{
   display: inline-block;
+  margin: 0px 20px;
   table{
     display: inline-block;
     width: auto;
@@ -29,6 +30,7 @@
     }
   }
 }
+.person-panel,
 .person-action,
 .person-action-alert{
   display: inline-block;
