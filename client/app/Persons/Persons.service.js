@@ -48,12 +48,12 @@ angular.module('hierarchyApp')
         unassigns.push(new Person(age));
       },
       createNewGrads:function(){
-        var p = new Person( Math.floor(Math.random()*4) );
+        var p = new Person( Math.floor(Math.random()*5) );
         newGradsRoot.children.push(p);
         p.parent = newGradsRoot;
       },
       createMidCareers: function(){
-        var p = new Person( Math.floor(Math.random()*30)+5 );
+        var p = new Person( Math.floor(Math.random()*30)+8);
         p.origSkill *= .9;
         midCareersRoot.children.push(p);
         p.parent = midCareersRoot;
@@ -65,11 +65,11 @@ angular.module('hierarchyApp')
           }
         });
         newGradsRoot.children = [];
-        var newCount = Math.random() * 3+ 1;
+        var newCount = Math.random() * 3;
         while(newCount-- > 0){
           this.createNewGrads();
         }
-        var careerCount = Math.random() * 4;
+        var careerCount = Math.random() * 5;
         while(careerCount-- > 0){
           this.createMidCareers();
         }
