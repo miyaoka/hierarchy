@@ -2,10 +2,13 @@
 
 angular.module('hierarchyApp')
   .factory('Persons', function (Person) {
-    var rootPerson = new Person();
-    rootPerson.isRoot = true;
+    var orgRoot = new Person();
+    orgRoot.isRoot = true;
+    var newGradsRoot = new Person();
+    newGradsRoot.isRoot = true;
+    var midCareersRoot = new Person();
+    midCareersRoot.isRoot = true;
 
-    var unassigns = [];
     var selected = null;
     var selected2 = null;
     var action = null;
@@ -16,63 +19,91 @@ angular.module('hierarchyApp')
     var employCount = 1;
     var employCountLeft = 1;
 
+
     function removeAssign(person){
-      //親か無所属リストから取り除く
-      var from = person.parent ? person.parent.children : unassigns;
-      from.some(function(p, idx, ary){
+      //親から取り除く
+      var i;
+      person.parent.children.some(function(p, idx, ary){
         if(p === person){
           ary.splice(idx,1);
+          i = idx;
           return true;
         }
         return false
       });
       person.parent = null;
+      return i;
     }
     var Persons = {
-      root: rootPerson,
+      get root(){
+        return orgRoot;
+      },
+      get newGradsRoot(){
+        return newGradsRoot;
+      },
+      get midCareersRoot(){
+        return midCareersRoot;
+      },
       create: function (age) {
         unassigns.push(new Person(age));
       },
-      createNewbie:function(){
-        this.create(Math.floor(Math.random()*4));
+      createNewGrads:function(){
+        var p = new Person( Math.floor(Math.random()*4) );
+        newGradsRoot.children.push(p);
+        p.parent = newGradsRoot;
       },
-      createCareer: function(){
-        this.create(Math.floor(Math.random()*30)+5);
-        this.skill *= .8;
+      createMidCareers: function(){
+        var p = new Person( Math.floor(Math.random()*30)+5 );
+        p.origSkill *= .9;
+        midCareersRoot.children.push(p);
+        p.parent = midCareersRoot;
       },
       nextYear : function(){
-        unassigns.forEach(function(v,i,ua){
-          if(Math.random() > .3){
+        midCareersRoot.children.forEach(function(v,i,ua){
+          if(Math.random() > .2){
             ua.splice(i,1);
           }
         });
-        var newCount = Math.random() * 2;
+        newGradsRoot.children = [];
+        var newCount = Math.random() * 3+ 1;
         while(newCount-- > 0){
-          this.createNewbie();
+          this.createNewGrads();
         }
-        var careerCount = Math.random() * 3;
+        var careerCount = Math.random() * 4;
         while(careerCount-- > 0){
-          this.createCareer();
+          this.createMidCareers();
         }
+
+      },
+      handoff: function(from, to){
+        var parent = from.parent;
+        var children = from.children.concat();
+        var i = removeAssign(from);
+
+        children.forEach(function(c){
+          Persons.assignTo(c, to);
+        });
+
+        removeAssign(to);
+
+        //新規配属先設定
+        parent.children.splice(i, 0, to);
+
+        to.parent = parent;
+        to.assigned = true;
+
 
       },
       assignTo: function(person, parent) {
 
         removeAssign(person);
 
-        if(person.parent == rootPerson){
-//          Persons.root = rootPerson;
-        }
-
         //新規配属先設定
-        var dest = parent ? parent.children : unassigns;
-        dest.push(person);
-
-        if(parent == rootPerson){
-//          Persons.root = person;
-        }
+        parent.children.push(person);
 
         person.parent = parent;
+        person.assigned = true;
+
       },
       select: function(person){
         var isSelf = (selected == person);
@@ -111,6 +142,11 @@ angular.module('hierarchyApp')
             }
           }
         }
+        if(action == 'handoff'){
+          if(selected2.tier < selected.tier && selected2.assigned){
+            alerts.push('後任者の地位が高すぎます');
+          }
+        }
 
         confirm = (alerts.length > 0) ? false : true;
       },
@@ -121,14 +157,14 @@ angular.module('hierarchyApp')
         action = 'transfer';
       },
       get hasTop(){
-        return rootPerson.hasChildren;
+        return orgRoot.hasChildren;
       },
       employ: function(){
         if(Persons.hasTop){
           action = 'employ';
           return;
         }
-        Persons.assignTo(selected, rootPerson);
+        Persons.assignTo(selected, orgRoot);
         Persons.cancelSelect();
       },
       fire: function(){
@@ -151,12 +187,7 @@ angular.module('hierarchyApp')
             break;
 
           case 'handoff':
-            Persons.assignTo(selected2, selected.parent);
-            var cs = selected.children.concat();
-            cs.forEach(function(p){
-              Persons.assignTo(p, selected2);
-            });
-            removeAssign(selected);
+            Persons.handoff(selected, selected2);
 
             break;
         }
@@ -170,9 +201,6 @@ angular.module('hierarchyApp')
         action = null;
         confirm = null;
         alerts = [];
-      },
-      get unassigns(){
-        return unassigns;
       },
       get tiers(){
         return tiers;

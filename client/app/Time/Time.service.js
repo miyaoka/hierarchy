@@ -21,9 +21,8 @@ angular.module('hierarchyApp')
         date.setFullYear(date.getFullYear()+1);
 
         personUpdate(Persons.root);
-        Persons.unassigns.forEach(function(p){
-          personUpdate(p);
-        });
+        personUpdate(Persons.midCareersRoot);
+
 
         Assets.update();
 

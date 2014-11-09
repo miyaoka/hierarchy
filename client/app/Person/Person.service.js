@@ -23,6 +23,7 @@ angular.module('hierarchyApp')
       this.name = '';
       this.face = Math.floor(Math.random() * faceCount);
       this.career = 0;
+      this.assigned = false;
     }
 
     Person.prototype = {

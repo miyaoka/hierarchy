@@ -44,7 +44,7 @@
         <div class="person-action text-left">
 
           <div ng-show="!persons.action">
-            <div ng-show="persons.selected.parent">
+            <div ng-show="persons.selected.assigned">
               <span ng-show="persons.selected.tier > 2">
                 <button class="btn btn-primary" ng-click="persons.promote()"><i class="fa fa-level-up fa-lg"></i> 昇進させる</button><br>
                 <button class="btn btn-info" ng-disabled="persons.transferCountLeft < 1" ng-click="persons.transfer()"><i class="fa fa-exchange fa-lg"></i> 転属させる <span class="badge">{{persons.transferCountLeft}}</span></button>
@@ -52,7 +52,7 @@
               </span>
               <button class="btn btn-danger" ng-click="persons.fire()"><i class="fa fa-ban fa-lg"></i> 解雇する</button>
             </div>
-            <div ng-show="!persons.selected.parent">
+            <div ng-show="!persons.selected.assigned">
               <button class="btn btn-primary" ng-disabled="persons.employCountLeft < 1" ng-click="persons.employ()"><i class="fa fa-thumbs-up fa-lg"></i> 雇用する <span class="badge">{{persons.employCountLeft}}</span></button>
 
               <p>（雇用は1ターンに指定回数しかできません）</p>
@@ -69,7 +69,7 @@
               <span ng-switch-when="promote">新しい上司を選んでください。<br>自身より高スキルかつ、今の上司より高い地位の人物しか選べません。</span>
               <span ng-switch-when="transfer">新しい上司を選んでください。<br>自身より高スキルかつ、今の上司と同じ地位の人物しか選べません。</span>
               <span ng-switch-when="employ">雇用先の上司を選んでください。<br>自身より高スキルの人物しか選べません。</span>
-              <span ng-switch-when="handoff">後任者を選んでください。</span>
+              <span ng-switch-when="handoff">後任者を選んでください。<br>同格以下か、新規雇用の人物しか選べません。</span>
               <span ng-switch-when="fire">解雇します。よろしいですか？</span>
             </div>
 
@@ -89,6 +89,7 @@
           <div>
             <img ng-src="assets/faceicons/businessman-icons/{{persons.selected.ageType}}.png" class="person-face">
           </div>
+          {{persons.selected.parent.id}}
           <table class="table table-bordered table-condensed">
             <tr>
               <td>スキル値</td>
@@ -127,13 +128,13 @@
     <div class="col-sm-6">
       <h4><i class="fa fa-graduation-cap fa-lg"></i> 新卒人材</h4>
       <div class="recruit well well-sm">
-        <span ng-repeat="p in persons.unassigns" person-cell person="p"></span>
+        <span ng-repeat="p in persons.newGradsRoot.children" person-cell person="p"></span>
       </div>
     </div>
     <div class="col-sm-6">
       <h4><i class="fa fa-child fa-lg"></i> 中途人材</h4>
       <div class="recruit well well-sm">
-        <span ng-repeat="p in persons.unassigns" person-cell person="p"></span>
+        <span ng-repeat="p in persons.midCareersRoot.children" person-cell person="p"></span>
       </div>
     </div>
   </div>

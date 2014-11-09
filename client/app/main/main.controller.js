@@ -4,7 +4,7 @@ angular.module('hierarchyApp')
   .controller('MainCtrl', function ($scope, Persons) {
     var i = 5;
     while(i-- > 0){
-      Persons.createCareer();
+      Persons.createMidCareers();
     }
 
 
@@ -16,7 +16,7 @@ angular.module('hierarchyApp')
         Persons.assignTo(ua[0], dest);
       }
     }
-    var ua = Persons.unassigns;
+    var ua = Persons.midCareersRoot.children;
     var p = ua[0];
     Persons.assignTo(p, Persons.root);
     assignTo(p);
