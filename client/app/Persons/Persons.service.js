@@ -169,6 +169,7 @@ angular.module('hierarchyApp')
         selected2 = null;
         action = null;
         confirm = null;
+        alerts = [];
       },
       get unassigns(){
         return unassigns;
