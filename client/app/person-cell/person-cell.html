@@ -1,4 +1,10 @@
-<div class="person" ng-click="select(person)" ng-class="{newbie: person.career == 0, anger: person.isAnger, selected: isSelected()}">
+<div class="person" ng-click="select(person)"
+  ng-class="{
+    newbie: person.career == 0,
+    anger: person.parentDiff < 0,
+    warning: person.parentDiff == 0,
+    selected: isSelected()
+  }">
     <img ng-src="assets/faceicons/businessman-icons/{{person.ageType}}.png" class="person-icon">
   <span class="rank-{{person | skillRank}}">
     <span ng-show="person.children.length > 0">

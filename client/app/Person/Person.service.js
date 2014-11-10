@@ -46,9 +46,9 @@ angular.module('hierarchyApp')
       advanceAge: function(){
         this.age++;
         if(this.age >= 40){
-          this.lastSkill = -( (Math.random() > .2) ? 2 : 1)
+          this.lastSkill = -( (Math.random() > .2) ? 2 : 1);
         } else {
-          this.lastSkill = (Math.random() > .5) ? 1 : 0
+          this.lastSkill = ((Math.random() > .5) ? 1 : 0);
         }
         this.origSkill = Math.max(0, (this.origSkill + this.lastSkill));
         this.career++;
@@ -56,6 +56,10 @@ angular.module('hierarchyApp')
       get isAnger(){
         var parent = this.parent;
         return (parent != null && !parent.isRoot && parent.skill < this.skill) ? true : false;
+      },
+      get parentDiff(){
+        var parent = this.parent;
+        return ((!parent || parent.isRoot) ? 100 : parent.skill - this.skill);
       },
       get tier(){
         var t = 0;
