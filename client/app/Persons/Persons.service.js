@@ -54,7 +54,7 @@ angular.module('hierarchyApp')
       },
       createMidCareers: function(){
         var p = new Person( Math.floor(Math.random()*30)+8);
-        p.origSkill *= .9;
+        p.origSkill = Math.floor(p.origSkill * .9);
         midCareersRoot.children.push(p);
         p.parent = midCareersRoot;
       },
