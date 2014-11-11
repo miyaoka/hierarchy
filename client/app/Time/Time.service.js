@@ -27,6 +27,7 @@ angular.module('hierarchyApp')
         Assets.update();
 
         Persons.nextYear();
+        Persons.cancelSelect();
 
       }
     };
