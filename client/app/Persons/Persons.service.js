@@ -80,7 +80,7 @@ angular.module('hierarchyApp')
         var children = from.children.concat();
 
         var relationSum = 0;
-        var pr = to.parentRelation;
+        var relation = to.relationTo(from);
         children.forEach(function(c){
           var cpr = c.parentRelation;
           relationSum += cpr;
@@ -88,7 +88,7 @@ angular.module('hierarchyApp')
         });
         //親のスキルを継承（最大5）
         if(relationSum > 0){
-          var parentBonus = Math.min(5, Math.floor(Math.pow(from.origSkill, .5) * (pr / relationSum)));
+          var parentBonus = Math.min(5, Math.floor(Math.pow(from.origSkill, .5) * (relation / relationSum)));
           to.origSkill += parentBonus;
           to.lastSkill += parentBonus;
         }

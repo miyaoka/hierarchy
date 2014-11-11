@@ -80,10 +80,13 @@ angular.module('hierarchyApp')
         return Math.min(4, Math.floor(this.age / 10));
       },
       get parentRelation(){
-        if(!this.parent || this.parent.isRoot){
+        return this.relationTo(this.parent);
+      },
+      relationTo: function(person){
+        if(!person || person.isRoot){
           return 0;
         }
-        return (this.relations[this.parent.id] || 0);
+        return (this.relations[person.id] || 0);
       }
     }
 
