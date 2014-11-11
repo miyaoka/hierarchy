@@ -1,6 +1,6 @@
 <div class="tree-container">
   <div ng-show="!treeroot.isRoot">
-    <div class="vline"></div>
+    <div class="vline" ng-style="{width: treeroot.parentRelation + 1}"></div>
     <div class="person-container text-center" ng-class="{'division-head': treeroot.hasChildren}">
       <span class="sum" ng-show="treeroot.hasChildren">{{treeroot.childSum | number:0}}</span>
       <span class="person-tree" person-cell person="treeroot"></span>

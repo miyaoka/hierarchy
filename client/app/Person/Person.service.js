@@ -24,6 +24,8 @@ angular.module('hierarchyApp')
       this.face = Math.floor(Math.random() * faceCount);
       this.career = 0;
       this.assigned = false;
+      this.isRoot = false;
+      this.relations = {};
     }
 
     Person.prototype = {
@@ -52,6 +54,10 @@ angular.module('hierarchyApp')
         }
         this.origSkill = Math.max(0, (this.origSkill + this.lastSkill));
         this.career++;
+        if(!this.parent || this.parent.isRoot){
+          return;
+        }
+        this.relations[this.parent.id] = ((this.relations[this.parent.id] == null) ? 1 : this.relations[this.parent.id]+1);
       },
       get isAnger(){
         var parent = this.parent;
@@ -72,6 +78,12 @@ angular.module('hierarchyApp')
       },
       get ageType(){
         return Math.min(4, Math.floor(this.age / 10));
+      },
+      get parentRelation(){
+        if(!this.parent || this.parent.isRoot){
+          return 0;
+        }
+        return (this.relations[this.parent.id] || 0);
       }
     }
 

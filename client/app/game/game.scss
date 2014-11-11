@@ -22,8 +22,10 @@
     display: inline-block;
     width: auto;
     margin: 0;
+    tbody > tr > td{
+      padding: 2px 12px;
+    }
     tbody > tr > td:first-child {
-      width: 25%;
       background-color: #f6f6f0;
       font-weight: bold;
       text-align: right;

@@ -91,6 +91,12 @@
           </div>
           <table class="table table-bordered table-condensed">
             <tr>
+              <td>ID</td>
+              <td>
+                  {{persons.selected.id | number:0}}
+              </td>
+            </tr>
+            <tr>
               <td>スキル値</td>
               <td class="rank-{{persons.selected | skillRank}}">
                   {{persons.selected.origSkill | number:0}}
@@ -103,9 +109,9 @@
               </td>
             </tr>
             <tr>
-              <td>勤続年数</td>
+              <td>現上司との付き合い</td>
               <td>
-                {{persons.selected.career}}年
+                {{persons.selected.parentRelation}}年
               </td>
             </tr>
           </table>
