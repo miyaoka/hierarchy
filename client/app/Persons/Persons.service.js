@@ -53,7 +53,7 @@ angular.module('hierarchyApp')
         p.parent = newGradsRoot;
       },
       createMidCareers: function(){
-        var p = new Person( Math.floor(Math.random()*30)+8);
+        var p = new Person( Math.floor(Math.random()*28)+10);
         p.origSkill = Math.floor(p.origSkill * .9);
         midCareersRoot.children.push(p);
         p.parent = midCareersRoot;
