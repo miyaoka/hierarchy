@@ -88,7 +88,7 @@ angular.module('hierarchyApp')
         });
         //親のスキルを継承（最大5）
         if(relationSum > 0){
-          var parentBonus = Math.min(5, Math.floor(from.origSkill * (pr / relationSum * .5)));
+          var parentBonus = Math.min(5, Math.floor(Math.pow(from.origSkill, .5) * (pr / relationSum)));
           to.origSkill += parentBonus;
           to.lastSkill += parentBonus;
         }
