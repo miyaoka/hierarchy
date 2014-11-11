@@ -78,13 +78,24 @@ angular.module('hierarchyApp')
       handoff: function(from, to){
         var parent = from.parent;
         var children = from.children.concat();
-        var i = removeAssign(from);
 
+        var relationSum = 0;
+        var pr = to.parentRelation;
         children.forEach(function(c){
+          var cpr = c.parentRelation;
+          relationSum += cpr;
           Persons.assignTo(c, to);
         });
+        //親のスキルを継承（最大5）
+        if(relationSum > 0){
+          var parentBonus = Math.min(5, Math.floor(from.origSkill * (pr / relationSum * .5)));
+          to.origSkill += parentBonus;
+          to.lastSkill += parentBonus;
+        }
 
         removeAssign(to);
+
+        var i = removeAssign(from);
 
         //新規配属先設定
         parent.children.splice(i, 0, to);
