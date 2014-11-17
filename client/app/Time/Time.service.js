@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hierarchyApp')
-  .factory('Time', function (Persons, Assets) {
+  .factory('Time', function (Persons, Assets, Workers) {
     var date = new Date(2001,0,1);
 
     function personUpdate(person){
@@ -11,6 +11,7 @@ angular.module('hierarchyApp')
       person.children.forEach(function(p){
         personUpdate(p);
       });
+
     }
 
     var Time = {
@@ -23,6 +24,11 @@ angular.module('hierarchyApp')
         personUpdate(Persons.root);
         personUpdate(Persons.midCareersRoot);
 
+      Workers.index.forEach(function(w){
+        w.advanceAge();
+      });
+      Workers.createNewGrads();
+//      Workers.destroy(Workers.index[0].id);
 
         Assets.update();
 

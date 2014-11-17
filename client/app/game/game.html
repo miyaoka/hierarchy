@@ -7,13 +7,49 @@
       <h3>
         <span ng-bind-html="time.date | appTime"></span>
       </h3>
-        <i class="btn btn-primary fa fa-play" ng-click="nextYear()"> 次のターンへ進める</i>
-        <span class="pull-right text-right">
-          今期：{{assets.term *10 | number: 0}}万円<br>
-          前期：{{assets.lastTerm *10 | number: 0}}万円<br>
-          総資産：{{assets.total *10 | number: 0}}万円
-        </span>
-      </h3>
+      <i class="btn btn-primary fa fa-play" ng-click="nextYear()"> 次のターンへ進める</i>
+      <i class="btn btn-primary fa fa-play" ng-click="save()"> セーブ</i>
+      <i class="btn btn-primary fa fa-play" ng-click="load()"> ロード</i>
+      <i class="btn btn-primary fa fa-play" ng-click="clear()"> クリア</i>
+
+      <table class="table">
+        <tr>
+          <td>id</td>
+          <td>age</td>
+          <td>skill</td>
+          <td>nid</td>
+        </tr>
+        <tr ng-repeat="w in workers.index">
+          <td>{{w.id}}</td>
+          <td>{{w.age + 20}}</td>
+          <td>{{w.origSkill}}</td>
+          <td>{{nodes.byWorkerId(w.id)  }}</td>
+        </tr>
+
+      </table>
+
+
+      <table class="table">
+        <tr>
+          <td>id</td>
+          <td>worker</td>
+          <td>child</td>
+          <td>nid</td>
+        </tr>
+        <tr ng-repeat="n in nodes.index">
+          <td>{{n.id}}</td>
+          <td>{{n.workerId}}</td>
+          <td>{{n.children}}</td>
+          <td>{{n.name}}</td>
+        </tr>
+
+      </table>
+
+      <span class="pull-right text-right">
+        今期：{{assets.term *10 | number: 0}}万円<br>
+        前期：{{assets.lastTerm *10 | number: 0}}万円<br>
+        総資産：{{assets.total *10 | number: 0}}万円
+      </span>
     </div>
   </div>
 

@@ -8,9 +8,11 @@ angular.module('hierarchyApp', [
   'ui.bootstrap',
   'RecursionHelper',
   'ngDraggable',
-  'hc.marked'
+  'hc.marked',
+  'uuid',
+  'LocalStorageModule'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, localStorageServiceProvider) {
     $urlRouterProvider
       .otherwise('/');
 
